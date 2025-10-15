@@ -1,751 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bring The Rain - Premium Gutter Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap');
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .parallax-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100vh;
-            overflow: hidden;
-            background: #374151;
-            z-index: 1;
-        }
-        
-        .hero-content-wrapper {
-            position: relative;
-            height: 100vh;
-            z-index: 2;
-        }
-        
-        .parallax-row {
-            position: absolute;
-            white-space: nowrap;
-            font-weight: 700;
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            color: #4b5563;
-            transform: rotate(-8deg);
-            will-change: transform;
-            transition: transform 0.1s ease-out;
-        }
-        
-/* Alternate directions and tilts for variety */
-        .parallax-row:nth-child(odd) {
-            left: -15%; /* Reduced from -25% for better visibility on smaller screens */
-            transform: rotate(-6deg); /* Slightly reduced rotation for less vertical overlap */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lonsdale Tobacco & Vape | Local Smoke Shop</title>
+  <meta name="description" content="Lonsdale Tobacco & Vape – Your local smoke shop offering premium tobacco, vape, and accessories in Lonsdale.">
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
 
-        .parallax-row:nth-child(even) {
-            left: -15%; /* Start from right for even rows */
-            left: auto;
-            transform: rotate(-6deg);
-        }
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#dc2626",
+            secondary: "#1e293b",
+          },
+        },
+      },
+    };
+  </script>
 
-        /* Evenly spaced tops */
-        .parallax-row:nth-child(1) {
-            top: -5%;
-        }
+  <style>
+    .hero-bg {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.35),
+          rgba(0, 0, 0, 0.35)
+        ),
+        url("http://static.photos/retail/1200x630/42");
+      background-size: cover;
+      background-position: center;
+    }
+/* === Smooth Infinite Brand Scroll === */
+.brand-scroll {
+  animation: scroll-left 30s linear infinite;
+}
 
-        .parallax-row:nth-child(2) {
-            top: 10%;
-        }
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
-        .parallax-row:nth-child(3) {
-            top: 35%;
-        }
+    ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
 
-        .parallax-row:nth-child(4) {
-            top: 50%;
-        }
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light gray background */
+  border-radius: 10px;
+}
 
-        .parallax-row:nth-child(5) {
-            top: 65%;
-        }
+::-webkit-scrollbar-thumb {
+  background: #dc2626; /* Your primary red */
+  border-radius: 10px;
+  border: 2px solid #f1f1f1; /* Adds spacing */
+}
 
-        .parallax-text {
-            display: inline-block;
-            padding: 0 2rem;
-            transition: transform 0.05s linear;
-        }
-        
-        .parallax-text.highlight {
-            color: #f3f4f6;
-            font-weight: 900;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-        }
-        
-        .separator {
-            color: #6b7280;
-            font-weight: 400;
-            padding: 0 1.5rem;
-            display: inline-block;
-            transition: transform 0.05s linear;
-        }
+::-webkit-scrollbar-thumb:hover {
+  background: #b91c1c; /* Darker red on hover */
+}
 
-        /* Media queries for responsiveness */
-        @media (max-width: 768px) {
-            .parallax-row {
-                font-size: clamp(1.8rem, 8vw, 3.5rem); /* Smaller fonts on mobile to reduce overlap */
-            }
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #dc2626 #f1f1f1;
+}
+body {
+  scrollbar-gutter: stable;
+}
 
-            .parallax-row:nth-child(odd) {
-                left: -10%; /* Less offscreen for narrow viewports */
-                transform: rotate(-4deg); /* Reduce tilt to save vertical space */
-            }
+::-webkit-scrollbar {
+  transition: opacity 0.3s ease;
+}
 
-            .parallax-row:nth-child(even) {
-                left: -10%;
-                transform: rotate(-4deg);
-            }
+body::-webkit-scrollbar-thumb {
+  opacity: 0.5;
+}
 
-            /* Slightly spread out tops on mobile if needed (adjust if too crowded) */
-            .parallax-row:nth-child(1) { top: 10%; }
-            .parallax-row:nth-child(2) { top: 25%; }
-            .parallax-row:nth-child(3) { top: 45%; }
-            .parallax-row:nth-child(4) { top: 65%; }
-            .parallax-row:nth-child(5) { top: 80%; }
-        }
+body:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
 
-        @media (max-width: 480px) {
-            .parallax-row {
-                font-size: clamp(1.2rem, 9vw, 2.5rem); /* Even smaller for very small screens */
-            }
 
-            .parallax-row:nth-child(odd) {
-                transform: rotate(-3deg);
-            }
 
-            .parallax-row:nth-child(even) {
-                transform: rotate(-3deg);
-            }
-        }
-        
-        /* Section divider with parallax text */
-        .section-divider {
-            position: relative;
-            height: 150px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-        }
-        
-        .divider-text-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-        
-        .divider-text-row {
-            position: absolute;
-            white-space: nowrap;
-            font-weight: 700;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: rgba(255, 255, 255, 0.15);
-            will-change: transform;
-            animation: scrollText 30s linear infinite;
-        }
-        
-        @keyframes scrollText {
-            0% {
-                transform: translateX(-50%);
-            }
-            100% {
-                transform: translateX(0%);
-            }
-        }
-        
-        .divider-text {
-            display: inline-block;
-            padding: 0 2rem;
-        }
-        
-        .divider-text.highlight {
-            color: rgba(255, 255, 255, 0.35);
-            font-weight: 900;
-        }
-        
-        .divider-separator {
-            color: rgba(255, 255, 255, 0.15);
-            font-weight: 400;
-            padding: 0 1.5rem;
-            display: inline-block;
-        }
-        
-        /* White spacer after hero to hide parallax */
-        .content-start {
-            position: relative;
-            background: white;
-            z-index: 10;
-        }
-        
-        /* Scroll-triggered animations */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .scroll-reveal-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .scroll-reveal-left.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .scroll-reveal-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .scroll-reveal-right.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .scroll-reveal-scale {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .scroll-reveal-scale.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        /* Stagger delays for grid items */
-        .scroll-reveal:nth-child(1) { transition-delay: 0.1s; }
-        .scroll-reveal:nth-child(2) { transition-delay: 0.2s; }
-        .scroll-reveal:nth-child(3) { transition-delay: 0.3s; }
-        .scroll-reveal:nth-child(4) { transition-delay: 0.4s; }
-        
-        .fade-in {
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .team-member:hover .team-overlay {
-            opacity: 1;
-        }
-    </style>
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .review-card {
+      transition: transform 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <div class="bg-blue-600 p-2 rounded-lg">
-                            <i data-feather="cloud-rain" class="h-6 w-6 text-white"></i>
-                        </div>
-                        <span class="ml-3 text-xl font-bold text-gray-900">Bring The Rain</span>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium transition duration-300">Home</a>
-                    <a href="#about" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium transition duration-300">Our Mission</a>
-                    <a href="#contact" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium transition duration-300">Contact</a>
-                    <a href="#team" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium transition duration-300">Our Team</a>
-                    <a href="#gallery" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium transition duration-300">Gallery</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button class="mobile-menu-button p-2 focus:outline-none">
-                        <i data-feather="menu" class="h-6 w-6 text-gray-900"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu hidden md:hidden bg-white shadow-lg fixed w-full z-40 mt-20">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50">Home</a>
-            <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50">Our Mission</a>
-            <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50">Contact</a>
-            <a href="#team" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50">Our Team</a>
-            <a href="#gallery" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50">Gallery</a>
+<body class="bg-gray-50 font-sans text-secondary">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i data-feather="shopping-bag" class="text-primary"></i>
+        <span class="text-xl font-bold">Lonsdale Tobacco & Vape</span>
+      </div>
+      <div class="hidden md:flex space-x-6">
+        <a href="#" class="hover:text-primary font-medium">Home</a>
+        <a href="#hot-sellers" class="hover:text-primary font-medium">Products</a>
+        <a href="#about" class="hover:text-primary font-medium">About</a>
+        <a href="#contact" class="hover:text-primary font-medium">Contact</a>
+      </div>
+      <button class="md:hidden" aria-label="Open menu">
+        <i data-feather="menu"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-bg text-white py-20 md:py-32 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        Your Local Smoke Shop
+      </h1>
+      <p class="text-xl md:text-2xl mb-8">
+        Quality tobacco & vape products in the heart of Lonsdale
+      </p>
+      <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+        <a href="tel:+15551234567" class="flex items-center bg-primary hover:bg-red-700 px-6 py-3 rounded-lg font-medium">
+          <i data-feather="phone" class="mr-2"></i> (555) 123-4567
+        </a>
+        <a href="#contact" class="flex items-center bg-white hover:bg-gray-100 text-secondary px-6 py-3 rounded-lg font-medium">
+          <i data-feather="map-pin" class="mr-2"></i> 123 Main St, Lonsdale
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Brands -->
+  <section class="py-10 bg-white overflow-hidden">
+  <h2 class="text-3xl font-bold text-center mb-6 text-red-500">Featured Brands</h2>
+  <div class="relative w-full overflow-hidden">
+    <div class="brand-scroll flex w-max">
+      <!-- One full set of logos -->
+      <img src="https://images.pexels.com/photos/3646555/pexels-photo-3646555.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
+      <img src="https://images.pexels.com/photos/3877672/pexels-photo-3877672.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
+      <img src="https://images.pexels.com/photos/3646553/pexels-photo-3646553.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
+      <img src="https://images.pexels.com/photos/3646557/pexels-photo-3646557.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
+      <img src="https://images.pexels.com/photos/414691/pexels-photo-414691.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
+
+      <!-- Duplicate the same set again for infinite loop -->
+      <img src="https://images.pexels.com/photos/3646555/pexels-photo-3646555.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
+      <img src="https://images.pexels.com/photos/3877672/pexels-photo-3877672.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
+      <img src="https://images.pexels.com/photos/3646553/pexels-photo-3646553.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
+      <img src="https://images.pexels.com/photos/3646557/pexels-photo-3646557.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
+      <img src="https://images.pexels.com/photos/414691/pexels-photo-414691.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
+    </div>
+  </div>
+</section>
+
+  <!-- Hot Sellers -->
+  <section id="hot-sellers" class="py-12 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-center text-primary mb-8">Hot Sellers</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Product 1 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <img src="http://static.photos/technology/640x360/10" alt="Premium Tobacco Blend" class="w-full h-48 object-cover" />
+          <div class="p-4">
+            <h3 class="text-lg font-semibold">Premium Tobacco Blend</h3>
+            <p class="text-gray-600 mb-2">Smooth & aromatic</p>
+            <div class="flex justify-between items-center">
+              <span class="text-primary font-bold">$8.99</span>
+              <button class="bg-primary hover:bg-red-700 text-white px-3 py-1 rounded text-sm">
+                <i data-feather="shopping-cart" class="w-4 h-4 inline"></i>
+              </button>
+            </div>
+          </div>
         </div>
+
+        <!-- Product 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <img src="http://static.photos/technology/640x360/11" alt="Fruit Fusion Vape" class="w-full h-48 object-cover" />
+          <div class="p-4">
+            <h3 class="text-lg font-semibold">Fruit Fusion Vape</h3>
+            <p class="text-gray-600 mb-2">Exotic flavor mix</p>
+            <div class="flex justify-between items-center">
+              <span class="text-primary font-bold">$12.99</span>
+              <button class="bg-primary hover:bg-red-700 text-white px-3 py-1 rounded text-sm">
+                <i data-feather="shopping-cart" class="w-4 h-4 inline"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <img src="http://static.photos/technology/640x360/12" alt="Classic Rolling Papers" class="w-full h-48 object-cover" />
+          <div class="p-4">
+            <h3 class="text-lg font-semibold">Classic Rolling Papers</h3>
+            <p class="text-gray-600 mb-2">Ultra-thin & slow-burning</p>
+            <div class="flex justify-between items-center">
+              <span class="text-primary font-bold">$3.99</span>
+              <button class="bg-primary hover:bg-red-700 text-white px-3 py-1 rounded text-sm">
+                <i data-feather="shopping-cart" class="w-4 h-4 inline"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section id="about" class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-primary mb-4">Why Choose Us?</h2>
+      <p class="text-gray-600 mb-12">
+        As a locally owned and operated business, we take pride in offering
+        high-quality tobacco and vape products at competitive prices. Our
+        knowledgeable staff is here to help you find exactly what you're looking
+        for, whether you're a seasoned connoisseur or just starting your
+        journey.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Review cards -->
+        <div class="review-card bg-gray-50 rounded-lg shadow-sm p-6">
+          <div class="flex space-x-1 text-yellow-400 mb-4">
+            <i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i>
+          </div>
+          <p class="text-gray-600 mb-4">
+            "Best selection in town! The staff is always friendly and helpful."
+          </p>
+          <div class="flex items-center">
+            <img src="http://static.photos/people/100x100/1" alt="Customer James" class="w-10 h-10 rounded-full mr-3" />
+            <div>
+              <h4 class="font-medium">James W.</h4>
+              <p class="text-sm text-gray-500">Local Customer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card bg-gray-50 rounded-lg shadow-sm p-6">
+          <div class="flex space-x-1 text-yellow-400 mb-4">
+            <i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i>
+          </div>
+          <p class="text-gray-600 mb-4">
+            "Fair prices and the owner really cares about quality. My go-to shop!"
+          </p>
+          <div class="flex items-center">
+            <img src="http://static.photos/people/100x100/2" alt="Customer Sarah" class="w-10 h-10 rounded-full mr-3" />
+            <div>
+              <h4 class="font-medium">Sarah K.</h4>
+              <p class="text-sm text-gray-500">Regular Customer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card bg-gray-50 rounded-lg shadow-sm p-6">
+          <div class="flex space-x-1 text-yellow-400 mb-4">
+            <i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i>
+          </div>
+          <p class="text-gray-600 mb-4">
+            "They took the time to explain different vape options. Highly recommend!"
+          </p>
+          <div class="flex items-center">
+            <img src="http://static.photos/people/100x100/3" alt="Customer Mike" class="w-10 h-10 rounded-full mr-3" />
+            <div>
+              <h4 class="font-medium">Mike T.</h4>
+              <p class="text-sm text-gray-500">New Customer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Hours -->
+  <section id="contact" class="py-16 bg-secondary text-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Visit Us Today</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Hours -->
+        <div>
+          <h3 class="text-xl font-semibold mb-4 flex items-center">
+            <i data-feather="clock" class="mr-2"></i> Hours
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex justify-between"><span>Mon–Fri</span><span>7 AM–10 PM</span></li>
+            <li class="flex justify-between"><span>Saturday</span><span>8 AM–10 PM</span></li>
+            <li class="flex justify-between"><span>Sunday</span><span>9 AM–9 PM</span></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h3 class="text-xl font-semibold mb-4 flex items-center">
+            <i data-feather="info" class="mr-2"></i> Contact
+          </h3>
+          <ul class="space-y-3">
+            <li class="flex items-center"><i data-feather="map-pin" class="mr-2"></i> 123 Main St, Lonsdale</li>
+            <li class="flex items-center"><i data-feather="phone" class="mr-2"></i> (555) 123-4567</li>
+            <li class="flex items-center"><i data-feather="mail" class="mr-2"></i> contact@lonsdalesmoke.com</li>
+          </ul>
+        </div>
+
+        <!-- Form -->
+        <div>
+          <h3 class="text-xl font-semibold mb-4 flex items-center">
+            <i data-feather="message-square" class="mr-2"></i> Send a Message
+          </h3>
+          <form class="space-y-3">
+            <input type="text" placeholder="Your Name" class="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary" />
+            <input type="email" placeholder="Your Email" class="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary" />
+            <textarea placeholder="Your Message" rows="3" class="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+            <button type="submit" class="bg-primary hover:bg-red-700 text-white px-6 py-2 rounded-lg font-medium w-full">Send Message</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="mt-12 bg-gray-800 rounded-lg overflow-hidden h-64">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5693.363197245544!2d-93.42569785837077!3d44.48069889544048!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87f66768d37a22f1%3A0x53d1a627885a0140!2sLonsdale%20Tobacco%20%26%20Vape!5e0!3m2!1sen!2sus!4v1760558564024!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <div class="flex items-center space-x-2">
+          <i data-feather="shopping-bag" class="text-primary"></i>
+          <span class="text-xl font-bold">Lonsdale Tobacco & Vape</span>
+        </div>
+        <p class="text-gray-400 mt-2">Your local smoke shop since 2010</p>
+      </div>
+      <div class="flex space-x-6">
+        <a href="#" class="text-gray-400 hover:text-primary" aria-label="Facebook"><i data-feather="facebook"></i></a>
+        <a href="#" class="text-gray-400 hover:text-primary" aria-label="Instagram"><i data-feather="instagram"></i></a>
+        <a href="#" class="text-gray-400 hover:text-primary" aria-label="Twitter"><i data-feather="twitter"></i></a>
+      </div>
     </div>
 
-    <!-- Fixed Parallax Background -->
-    <div class="parallax-container">
-        <div class="parallax-row" data-speed="0.3">
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">GUTTER INSTALLATION</span>
-            <span class="separator">•</span>
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">GUTTER INSTALLATION</span>
-            <span class="separator">•</span>
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-        </div>
-        <div class="parallax-row" data-speed="-0.35">
-            <span class="parallax-text">GUTTER CLEANING</span>
-            <span class="separator">•</span>
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">GUTTER MAINTENANCE</span>
-            <span class="separator">•</span>
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">GUTTER CLEANING</span>
-        </div>
-        <div class="parallax-row" data-speed="0.45">
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">EXTERIORS</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">GUTTER REPAIR</span>
-            <span class="separator">•</span>
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">EXTERIORS</span>
-        </div>
-        <div class="parallax-row" data-speed="-0.45">
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">EXTERIORS</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">GUTTER REPAIR</span>
-            <span class="separator">•</span>
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">EXTERIORS</span>
-        </div>
-        <div class="parallax-row" data-speed="-0.3">
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">GUTTER INSTALLATION</span>
-            <span class="separator">•</span>
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-            <span class="separator">•</span>
-            <span class="parallax-text">GUTTER INSTALLATION</span>
-            <span class="separator">•</span>
-            <span class="parallax-text highlight">BRING THE RAIN</span>
-        </div>
+    <div class="border-t border-gray-800 mt-6 pt-6 text-center text-gray-400 text-sm">
+      <p>© 202
+      <p>© 2025 Lonsdale Tobacco & Vape. All rights reserved.</p>
     </div>
+  </footer>
 
-    <!-- Hero Section Content -->
-    <section id="home" class="hero-content-wrapper flex items-center justify-center">
-        <div class="absolute inset-0 bg-gradient-to-b from-gray-700/60 via-gray-700/40 to-gray-700/60"></div>
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto fade-in">
-            <div class="backdrop-blur-md bg-gray-900/20 rounded-2xl p-8 md:p-12">
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">Bring The Rain</h1>
-                <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-lg">Expert Gutter Installation & Exterior Solutions</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#contact" class="bg-white text-blue-700 hover:bg-blue-100 px-8 py-3 rounded-lg font-semibold text-lg transition duration-300 shadow-lg">Get a Free Quote</a>
-                    <a href="#about" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-700 px-8 py-3 rounded-lg font-semibold text-lg transition duration-300">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content starts here with white background to cover parallax -->
-    <div class="content-start">
-        <!-- Mission, Vision, Goal & Purpose Section -->
-        <section id="about" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 scroll-reveal">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Foundation</h2>
-                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-                    <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">Building trust one raindrop at a time</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm card-hover scroll-reveal">
-                        <div class="bg-emerald-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
-                            <i data-feather="target" class="h-6 w-6 text-emerald-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Mission</h3>
-                        <p class="text-gray-600">To protect homes with superior gutter systems while delivering craftsmanship that stands the test of time and weather.</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm card-hover scroll-reveal">
-                        <div class="bg-purple-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
-                            <i data-feather="eye" class="h-6 w-6 text-purple-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Vision</h3>
-                        <p class="text-gray-600">To redefine the gutter industry through innovation, integrity, and a commitment to every homeowner's peace of mind.</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm card-hover scroll-reveal">
-                        <div class="bg-amber-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
-                            <i data-feather="award" class="h-6 w-6 text-amber-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Promise</h3>
-                        <p class="text-gray-600">To treat your home as our own, combining technical expertise with old-fashioned customer care.</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm card-hover scroll-reveal">
-                        <div class="bg-rose-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
-                            <i data-feather="heart" class="h-6 w-6 text-rose-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Approach</h3>
-                        <p class="text-gray-600">We listen first, then deliver solutions that protect your home while respecting your budget and timeline.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Decorative Parallax Divider with Moving Text -->
-        <div class="section-divider" id="divider">
-            <div class="divider-text-container">
-                <div class="divider-text-row">
-                    <span class="divider-text highlight">QUALITY</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text">EXCELLENCE</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text highlight">PROTECTION</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text">TRUST</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text highlight">EXPERTISE</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text">INNOVATION</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text highlight">QUALITY</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text">EXCELLENCE</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text highlight">PROTECTION</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text">TRUST</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text highlight">EXPERTISE</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text">INNOVATION</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text highlight">QUALITY</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text">EXCELLENCE</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text highlight">PROTECTION</span>
-                    <span class="divider-separator">•</span>
-                    <span class="divider-text">TRUST</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Connect With Us Section -->
-        <section id="contact" class="py-20 bg-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 scroll-reveal">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Connect With Us</h2>
-                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-                    <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">We're just a call, click, or message away</p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-sm text-center card-hover scroll-reveal-left">
-                        <div class="bg-emerald-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i data-feather="phone" class="h-6 w-6 text-emerald-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Call Us</h3>
-                        <p class="text-gray-600 mb-4">Monday-Saturday, 8am-6pm</p>
-                        <a href="tel:+15551234567" class="text-emerald-600 hover:text-emerald-800 font-medium text-lg">(555) 123-4567</a>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-lg shadow-sm text-center card-hover scroll-reveal-scale">
-                        <div class="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i data-feather="mail" class="h-6 w-6 text-blue-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
-                        <p class="text-gray-600 mb-4">We respond within 24 hours</p>
-                        <a href="mailto:info@bringtherain.com" class="text-blue-600 hover:text-blue-800 font-medium text-lg">info@bringtherain.com</a>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-lg shadow-sm text-center card-hover scroll-reveal-right">
-                        <div class="bg-purple-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i data-feather="facebook" class="h-6 w-6 text-purple-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Follow Us</h3>
-                        <p class="text-gray-600 mb-4">See our latest projects</p>
-                        <a href="https://facebook.com/bringtherain" class="text-purple-600 hover:text-purple-800 font-medium text-lg">@BringTheRain</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Meet The Team Section -->
-        <section id="team" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 scroll-reveal">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Meet The Team</h2>
-                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-                    <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">The faces behind your home's protection</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="relative overflow-hidden rounded-lg group scroll-reveal">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member" class="w-full h-64 object-cover">
-                        <div class="team-overlay absolute inset-0 bg-blue-600/90 flex items-center justify-center opacity-0 transition-opacity duration-300">
-                            <div class="text-center p-4 text-white">
-                                <h3 class="text-xl font-bold">John Smith</h3>
-                                <p class="text-blue-100">Founder & Lead Installer</p>
-                                <p class="mt-2 text-sm">15 years of gutter expertise</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="relative overflow-hidden rounded-lg group scroll-reveal">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member" class="w-full h-64 object-cover">
-                        <div class="team-overlay absolute inset-0 bg-emerald-600/90 flex items-center justify-center opacity-0 transition-opacity duration-300">
-                            <div class="text-center p-4 text-white">
-                                <h3 class="text-xl font-bold">Sarah Johnson</h3>
-                                <p class="text-emerald-100">Project Manager</p>
-                                <p class="mt-2 text-sm">Customer satisfaction specialist</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="relative overflow-hidden rounded-lg group scroll-reveal">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member" class="w-full h-64 object-cover">
-                        <div class="team-overlay absolute inset-0 bg-purple-600/90 flex items-center justify-center opacity-0 transition-opacity duration-300">
-                            <div class="text-center p-4 text-white">
-                                <h3 class="text-xl font-bold">Mike Rodriguez</h3>
-                                <p class="text-purple-100">Installation Expert</p>
-                                <p class="mt-2 text-sm">Precision is his middle name</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="relative overflow-hidden rounded-lg group scroll-reveal">
-                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member" class="w-full h-64 object-cover">
-                        <div class="team-overlay absolute inset-0 bg-amber-600/90 flex items-center justify-center opacity-0 transition-opacity duration-300">
-                            <div class="text-center p-4 text-white">
-                                <h3 class="text-xl font-bold">David Wilson</h3>
-                                <p class="text-amber-100">Quality Control</p>
-                                <p class="mt-2 text-sm">Makes sure every job is perfect</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="py-20 bg-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 scroll-reveal">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Work</h2>
-                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-                    <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">Quality that speaks for itself</p>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gutter Installation" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
-                        <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gutter Detail" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
-                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Finished Project" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
-                        <img src="https://images.unsplash.com/photo-1600566752227-8f61d413a4b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Custom Gutter" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
-                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Commercial Installation" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
-                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Residential Project" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer class="bg-gray-900 text-white py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div>
-                        <div class="flex items-center mb-4">
-                            <div class="bg-blue-600 p-2 rounded-lg">
-                                <i data-feather="cloud-rain" class="h-6 w-6 text-white"></i>
-                            </div>
-                            <span class="ml-3 text-xl font-bold">Bring The Rain</span>
-                        </div>
-                        <p class="text-gray-400">Protecting homes with premium gutter solutions since 2010.</p>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                            <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">Our Mission</a></li>
-                            <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
-                            <li><a href="#team" class="text-gray-400 hover:text-white transition duration-300">Our Team</a></li>
-                            <li><a href="#gallery" class="text-gray-400 hover:text-white transition duration-300">Gallery</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Services</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Gutter Installation</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Gutter Repair</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Gutter Cleaning</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Exterior Construction</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Free Estimates</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
-                        <ul class="space-y-2">
-                            <li class="flex items-center">
-                                <i data-feather="map-pin" class="h-5 w-5 text-blue-400 mr-2"></i>
-                                <span class="text-gray-400">123 Rain Street, Watertown</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i data-feather="phone" class="h-5 w-5 text-blue-400 mr-2"></i>
-                                <span class="text-gray-400">(555) 123-4567</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i data-feather="mail" class="h-5 w-5 text-blue-400 mr-2"></i>
-                                <span class="text-gray-400">info@bringtherain.com</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">© 2023 Bring The Rain. All rights reserved.</p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                            <i data-feather="facebook" class="h-5 w-5"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                            <i data-feather="instagram" class="h-5 w-5"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                            <i data-feather="twitter" class="h-5 w-5"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script>
-        feather.replace();
-        
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
-            document.querySelector('.mobile-menu').classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.mobile-menu').classList.add('hidden');
-            });
-        });
-        
-        // Fixed parallax effect - bars stay in place, text moves
-        let ticking = false;
-        
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const heroHeight = window.innerHeight;
-            const parallaxRows = document.querySelectorAll('.parallax-row');
-            
-            // Fade out the entire parallax container when scrolling past hero
-            const parallaxContainer = document.querySelector('.parallax-container');
-            if (scrolled > heroHeight) {
-                parallaxContainer.style.opacity = '0';
-                parallaxContainer.style.visibility = 'hidden';
-            } else {
-                parallaxContainer.style.opacity = '1';
-                parallaxContainer.style.visibility = 'visible';
-                
-                // Move text within the fixed bars
-                parallaxRows.forEach((row) => {
-                    const speed = parseFloat(row.getAttribute('data-speed'));
-                    const textElements = row.querySelectorAll('.parallax-text, .separator');
-                    
-                    textElements.forEach(textEl => {
-                        const offset = scrolled * speed;
-                        textEl.style.transform = `translateX(${offset}px)`;
-                    });
-                });
-            }
-        }
-        
-        // Scroll reveal animation
-        function revealOnScroll() {
-            const reveals = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale');
-            
-            reveals.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('active');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    updateParallax();
-                    revealOnScroll();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-        
-        // Add resize listener for responsiveness
-        window.addEventListener('resize', () => {
-            updateParallax();
-            revealOnScroll();
-        });
-        
-        // Initialize
-        updateParallax();
-        revealOnScroll();
-    </script>
+  <script>
+    feather.replace();
+  </script>
 </body>
 </html>
