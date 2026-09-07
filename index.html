@@ -1,368 +1,1305 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lonsdale Tobacco & Vape | Local Smoke Shop</title>
-  <meta name="description" content="Lonsdale Tobacco & Vape – Your local smoke shop offering premium tobacco, vape, and accessories in Lonsdale.">
-  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bring The Rain Exteriors — Gutter Installation, Repair &amp; Cleaning</title>
+    <meta name="description" content="Bring The Rain Exteriors installs, repairs, and maintains seamless gutter systems. Browse available gutter colors and request a free estimate.">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: "#dc2626",
-            secondary: "#1e293b",
-          },
-        },
-      },
-    };
-  </script>
+    <!--
+      ============================================================
+      PLACEHOLDER AUDIT — read before publishing
+      ============================================================
+      Every item below is example/demo data that shipped with the
+      original template. None of it has been verified as real client
+      information. Search for "PLACEHOLDER" to find each one in context.
 
-  <style>
-    .hero-bg {
-      background-image: linear-gradient(
-          rgba(0, 0, 0, 0.35),
-          rgba(0, 0, 0, 0.35)
-        ),
-        url("http://static.photos/retail/1200x630/42");
-      background-size: cover;
-      background-position: center;
-    }
-/* === Smooth Infinite Brand Scroll === */
-.brand-scroll {
-  animation: scroll-left 30s linear infinite;
-}
+        1. Phone number ......... (612) 382-1268   (appears twice)
+        2. Email address ........ info@bringtherain.com   (appears twice)
+        3. Street address ....... 123 Rain Street, Watertown
+        4. Facebook handle ...... facebook.com/bringtherain + @BringTheRain
+        5. Footer social links .. href="#" on Facebook / Instagram / X
+        6. "since 2010" ......... founding year in the footer blurb
+        7. Business hours ....... "Monday-Saturday, 8am-6pm"
+        8. Gallery photos ....... six Unsplash stock images, not real jobs
+        9. Copyright year ....... now auto-generated from the browser clock
+                                  (was hard-coded to 2023)
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
+      Send me the real values and I'll drop them in. Until then, leave
+      them as-is or delete the block that contains them — do not publish
+      a phone number or address you haven't confirmed.
+      ============================================================
+    -->
 
-    ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
+    <!-- Tailwind Play CDN. Fine for a static marketing page; if this site ever
+         grows, move to a compiled Tailwind build for speed and stability. -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Light gray background */
-  border-radius: 10px;
-}
+    <!-- Feather icons pinned to a fixed version so an upstream release can't
+         break the page (the original used an unversioned unpkg URL). -->
+    <script defer src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js"></script>
 
-::-webkit-scrollbar-thumb {
-  background: #dc2626; /* Your primary red */
-  border-radius: 10px;
-  border: 2px solid #f1f1f1; /* Adds spacing */
-}
+    <!-- Fonts loaded via <link> rather than @import: @import inside <style>
+         serialises the request and delays first paint. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;display=swap">
 
-::-webkit-scrollbar-thumb:hover {
-  background: #b91c1c; /* Darker red on hover */
-}
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
 
-/* Firefox support */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #dc2626 #f1f1f1;
-}
-body {
-  scrollbar-gutter: stable;
-}
+        /* Fixed navbar is 5rem tall — offset anchor targets so headings
+           don't slide underneath it. */
+        html {
+            scroll-behavior: smooth;
+        }
 
-::-webkit-scrollbar {
-  transition: opacity 0.3s ease;
-}
+        section[id],
+        div[id="divider"] {
+            scroll-margin-top: 5.5rem;
+        }
 
-body::-webkit-scrollbar-thumb {
-  opacity: 0.5;
-}
+        /* ---------- Hero parallax ---------- */
+        .parallax-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: #374151;
+            z-index: 1;
+        }
 
-body:hover::-webkit-scrollbar-thumb {
-  opacity: 1;
-}
+        .hero-content-wrapper {
+            position: relative;
+            height: 100vh;
+            z-index: 2;
+        }
 
+        .parallax-row {
+            position: absolute;
+            white-space: nowrap;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            color: #4b5563;
+            transform: rotate(-8deg);
+            will-change: transform;
+            transition: transform 0.1s ease-out;
+        }
 
+        /* Alternate tilts for variety */
+        .parallax-row:nth-child(odd) {
+            left: -15%;
+            transform: rotate(-6deg);
+        }
 
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
+        /* Original had `left: -15%` immediately overridden by `left: auto`
+           on the next line — the first declaration was dead code. Removed. */
+        .parallax-row:nth-child(even) {
+            left: auto;
+            transform: rotate(-6deg);
+        }
 
-    .review-card {
-      transition: transform 0.3s ease;
-    }
+        /* Evenly spaced tops */
+        .parallax-row:nth-child(1) { top: -5%; }
+        .parallax-row:nth-child(2) { top: 10%; }
+        .parallax-row:nth-child(3) { top: 35%; }
+        .parallax-row:nth-child(4) { top: 50%; }
+        .parallax-row:nth-child(5) { top: 65%; }
 
-    .review-card:hover {
-      transform: translateY(-5px);
-    }
-  </style>
+        .parallax-text {
+            display: inline-block;
+            padding: 0 2rem;
+            transition: transform 0.05s linear;
+        }
+
+        .parallax-text.highlight {
+            color: #f3f4f6;
+            font-weight: 900;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .separator {
+            color: #6b7280;
+            font-weight: 400;
+            padding: 0 1.5rem;
+            display: inline-block;
+            transition: transform 0.05s linear;
+        }
+
+        @media (max-width: 768px) {
+            .parallax-row {
+                font-size: clamp(1.8rem, 8vw, 3.5rem);
+            }
+
+            .parallax-row:nth-child(odd),
+            .parallax-row:nth-child(even) {
+                left: -10%;
+                transform: rotate(-4deg);
+            }
+
+            .parallax-row:nth-child(1) { top: 10%; }
+            .parallax-row:nth-child(2) { top: 25%; }
+            .parallax-row:nth-child(3) { top: 45%; }
+            .parallax-row:nth-child(4) { top: 65%; }
+            .parallax-row:nth-child(5) { top: 80%; }
+        }
+
+        @media (max-width: 480px) {
+            .parallax-row {
+                font-size: clamp(1.2rem, 9vw, 2.5rem);
+            }
+
+            .parallax-row:nth-child(odd),
+            .parallax-row:nth-child(even) {
+                transform: rotate(-3deg);
+            }
+        }
+
+        /* ---------- Section divider ---------- */
+        .section-divider {
+            position: relative;
+            height: 150px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+
+        .divider-text-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .divider-text-row {
+            position: absolute;
+            white-space: nowrap;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: rgba(255, 255, 255, 0.15);
+            will-change: transform;
+            animation: scrollText 30s linear infinite;
+        }
+
+        @keyframes scrollText {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
+        }
+
+        .divider-text {
+            display: inline-block;
+            padding: 0 2rem;
+        }
+
+        .divider-text.highlight {
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 900;
+        }
+
+        .divider-separator {
+            color: rgba(255, 255, 255, 0.15);
+            font-weight: 400;
+            padding: 0 1.5rem;
+            display: inline-block;
+        }
+
+        /* White spacer after hero to hide parallax */
+        .content-start {
+            position: relative;
+            background: white;
+            z-index: 10;
+        }
+
+        /* ---------- Scroll reveal ---------- */
+        .scroll-reveal,
+        .scroll-reveal-left,
+        .scroll-reveal-right,
+        .scroll-reveal-scale {
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scroll-reveal        { transform: translateY(50px); }
+        .scroll-reveal-left   { transform: translateX(-50px); }
+        .scroll-reveal-right  { transform: translateX(50px); }
+        .scroll-reveal-scale  { transform: scale(0.9); }
+
+        .scroll-reveal.active,
+        .scroll-reveal-left.active,
+        .scroll-reveal-right.active,
+        .scroll-reveal-scale.active {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Stagger delays for grid items */
+        .scroll-reveal:nth-child(1) { transition-delay: 0.1s; }
+        .scroll-reveal:nth-child(2) { transition-delay: 0.2s; }
+        .scroll-reveal:nth-child(3) { transition-delay: 0.3s; }
+        .scroll-reveal:nth-child(4) { transition-delay: 0.4s; }
+
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ---------- Gutter colour selector ---------- */
+        .gutter-preview {
+            --gutter-color: #f2f2ee;
+        }
+
+        .gutter-preview svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .color-card {
+            transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.3, 1),
+                        box-shadow 0.28s ease,
+                        border-color 0.28s ease;
+        }
+
+        .color-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.16);
+            border-color: #93c5fd;
+        }
+
+        .color-card:focus-visible {
+            outline: 3px solid #1d4ed8;
+            outline-offset: 3px;
+        }
+
+        .color-card.is-selected {
+            border-color: #1d4ed8;
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.28), 0 12px 26px rgba(15, 23, 42, 0.15);
+        }
+
+        /* The swatch: flat colour underneath (set inline per card) plus a
+           shared sheen so it reads as coated metal rather than a colour chip. */
+        .swatch {
+            position: relative;
+            display: block;
+            height: 5.5rem;
+            border-radius: 0.5rem;
+            background-image: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.38) 0%,
+                rgba(255, 255, 255, 0.08) 34%,
+                rgba(0, 0, 0, 0.04) 60%,
+                rgba(0, 0, 0, 0.20) 100%
+            );
+            box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.18);
+        }
+
+        .swatch-check {
+            position: absolute;
+            top: 0.4rem;
+            right: 0.4rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 9999px;
+            background: #ffffff;
+            color: #1d4ed8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.6);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.3);
+        }
+
+        .color-card.is-selected .swatch-check {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .color-card .hint-selected { display: none; }
+        .color-card.is-selected .hint-select { display: none; }
+        .color-card.is-selected .hint-selected { display: inline; }
+
+        /* ---------- Reduced motion ---------- */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+
+            .scroll-reveal,
+            .scroll-reveal-left,
+            .scroll-reveal-right,
+            .scroll-reveal-scale {
+                opacity: 1;
+                transform: none;
+            }
+
+            .color-card:hover { transform: none; }
+        }
+    </style>
+
+    <noscript>
+        <style>
+            /* Without JS the reveal classes would leave content invisible. */
+            .scroll-reveal,
+            .scroll-reveal-left,
+            .scroll-reveal-right,
+            .scroll-reveal-scale {
+                opacity: 1;
+                transform: none;
+            }
+        </style>
+    </noscript>
 </head>
+<body class="bg-gray-50">
+    <a href="#home" class="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-2 focus:left-2 focus:bg-white focus:text-blue-700 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg">Skip to main content</a>
 
-<body class="bg-gray-50 font-sans text-secondary">
-  <!-- Navigation -->
-  <nav class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <i data-feather="shopping-bag" class="text-primary"></i>
-        <span class="text-xl font-bold">Lonsdale Tobacco & Vape</span>
-      </div>
-      <div class="hidden md:flex space-x-6">
-        <a href="#" class="hover:text-primary font-medium">Home</a>
-        <a href="#hot-sellers" class="hover:text-primary font-medium">Products</a>
-        <a href="#about" class="hover:text-primary font-medium">About</a>
-        <a href="#contact" class="hover:text-primary font-medium">Contact</a>
-      </div>
-      <button class="md:hidden" aria-label="Open menu">
-        <i data-feather="menu"></i>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero-bg text-white py-20 md:py-32 px-4">
-    <div class="max-w-5xl mx-auto text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">
-        Your Local Smoke Shop
-      </h1>
-      <p class="text-xl md:text-2xl mb-8">
-        Quality tobacco & vape products in the heart of Lonsdale
-      </p>
-      <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
-        <a href="tel:+15551234567" class="flex items-center bg-primary hover:bg-red-700 px-6 py-3 rounded-lg font-medium">
-          <i data-feather="phone" class="mr-2"></i> (555) 123-4567
-        </a>
-        <a href="#contact" class="flex items-center bg-white hover:bg-gray-100 text-secondary px-6 py-3 rounded-lg font-medium">
-          <i data-feather="map-pin" class="mr-2"></i> 123 Main St, Lonsdale
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Brands -->
-  <section class="py-10 bg-white overflow-hidden">
-  <h2 class="text-3xl font-bold text-center mb-6 text-red-500">Featured Brands</h2>
-  <div class="relative w-full overflow-hidden">
-    <div class="brand-scroll flex w-max">
-      <!-- One full set of logos -->
-      <img src="https://images.pexels.com/photos/3646555/pexels-photo-3646555.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
-      <img src="https://images.pexels.com/photos/3877672/pexels-photo-3877672.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
-      <img src="https://images.pexels.com/photos/3646553/pexels-photo-3646553.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
-      <img src="https://images.pexels.com/photos/3646557/pexels-photo-3646557.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
-      <img src="https://images.pexels.com/photos/414691/pexels-photo-414691.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
-
-      <!-- Duplicate the same set again for infinite loop -->
-      <img src="https://images.pexels.com/photos/3646555/pexels-photo-3646555.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
-      <img src="https://images.pexels.com/photos/3877672/pexels-photo-3877672.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
-      <img src="https://images.pexels.com/photos/3646553/pexels-photo-3646553.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
-      <img src="https://images.pexels.com/photos/3646557/pexels-photo-3646557.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
-      <img src="https://images.pexels.com/photos/414691/pexels-photo-414691.jpeg?auto=compress&cs=tinysrgb&w=400" class="h-24 mx-6 rounded shadow">
-    </div>
-  </div>
-</section>
-
-  <!-- Hot Sellers -->
-  <section id="hot-sellers" class="py-12 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-center text-primary mb-8">Hot Sellers</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Product 1 -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-          <img src="http://static.photos/technology/640x360/10" alt="Premium Tobacco Blend" class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h3 class="text-lg font-semibold">Premium Tobacco Blend</h3>
-            <p class="text-gray-600 mb-2">Smooth & aromatic</p>
-            <div class="flex justify-between items-center">
-              <span class="text-primary font-bold">$8.99</span>
-              <button class="bg-primary hover:bg-red-700 text-white px-3 py-1 rounded text-sm">
-                <i data-feather="shopping-cart" class="w-4 h-4 inline"></i>
-              </button>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50" aria-label="Main">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center">
+                    <a href="#home" class="flex-shrink-0 flex items-center rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                        <span class="bg-blue-600 p-2 rounded-lg">
+                            <i data-feather="cloud-rain" class="h-6 w-6 text-white"></i>
+                        </span>
+                        <span class="ml-3 text-lg sm:text-xl font-bold text-gray-900">Bring The Rain Exteriors</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#home" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium transition duration-300">Home</a>
+                    <a href="#about" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium transition duration-300">Our Mission</a>
+                    <a href="#contact" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium transition duration-300">Contact</a>
+                    <a href="#colors" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium transition duration-300">Gutter Colors</a>
+                    <a href="#gallery" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium transition duration-300">Gallery</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button type="button"
+                            class="mobile-menu-button p-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                            aria-label="Open navigation menu"
+                            aria-expanded="false"
+                            aria-controls="mobile-menu">
+                        <i data-feather="menu" class="h-6 w-6 text-gray-900"></i>
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
+    </nav>
 
-        <!-- Product 2 -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-          <img src="http://static.photos/technology/640x360/11" alt="Fruit Fusion Vape" class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h3 class="text-lg font-semibold">Fruit Fusion Vape</h3>
-            <p class="text-gray-600 mb-2">Exotic flavor mix</p>
-            <div class="flex justify-between items-center">
-              <span class="text-primary font-bold">$12.99</span>
-              <button class="bg-primary hover:bg-red-700 text-white px-3 py-1 rounded text-sm">
-                <i data-feather="shopping-cart" class="w-4 h-4 inline"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-          <img src="http://static.photos/technology/640x360/12" alt="Classic Rolling Papers" class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h3 class="text-lg font-semibold">Classic Rolling Papers</h3>
-            <p class="text-gray-600 mb-2">Ultra-thin & slow-burning</p>
-            <div class="flex justify-between items-center">
-              <span class="text-primary font-bold">$3.99</span>
-              <button class="bg-primary hover:bg-red-700 text-white px-3 py-1 rounded text-sm">
-                <i data-feather="shopping-cart" class="w-4 h-4 inline"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Us -->
-  <section id="about" class="py-16 bg-white">
-    <div class="max-w-5xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold text-primary mb-4">Why Choose Us?</h2>
-      <p class="text-gray-600 mb-12">
-        As a locally owned and operated business, we take pride in offering
-        high-quality tobacco and vape products at competitive prices. Our
-        knowledgeable staff is here to help you find exactly what you're looking
-        for, whether you're a seasoned connoisseur or just starting your
-        journey.
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Review cards -->
-        <div class="review-card bg-gray-50 rounded-lg shadow-sm p-6">
-          <div class="flex space-x-1 text-yellow-400 mb-4">
-            <i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i>
-          </div>
-          <p class="text-gray-600 mb-4">
-            "Best selection in town! The staff is always friendly and helpful."
-          </p>
-          <div class="flex items-center">
-            <img src="http://static.photos/people/100x100/1" alt="Customer James" class="w-10 h-10 rounded-full mr-3" />
-            <div>
-              <h4 class="font-medium">James W.</h4>
-              <p class="text-sm text-gray-500">Local Customer</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card bg-gray-50 rounded-lg shadow-sm p-6">
-          <div class="flex space-x-1 text-yellow-400 mb-4">
-            <i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i>
-          </div>
-          <p class="text-gray-600 mb-4">
-            "Fair prices and the owner really cares about quality. My go-to shop!"
-          </p>
-          <div class="flex items-center">
-            <img src="http://static.photos/people/100x100/2" alt="Customer Sarah" class="w-10 h-10 rounded-full mr-3" />
-            <div>
-              <h4 class="font-medium">Sarah K.</h4>
-              <p class="text-sm text-gray-500">Regular Customer</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card bg-gray-50 rounded-lg shadow-sm p-6">
-          <div class="flex space-x-1 text-yellow-400 mb-4">
-            <i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i><i data-feather="star" class="fill-current"></i>
-          </div>
-          <p class="text-gray-600 mb-4">
-            "They took the time to explain different vape options. Highly recommend!"
-          </p>
-          <div class="flex items-center">
-            <img src="http://static.photos/people/100x100/3" alt="Customer Mike" class="w-10 h-10 rounded-full mr-3" />
-            <div>
-              <h4 class="font-medium">Mike T.</h4>
-              <p class="text-sm text-gray-500">New Customer</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact & Hours -->
-  <section id="contact" class="py-16 bg-secondary text-white">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12">Visit Us Today</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Hours -->
-        <div>
-          <h3 class="text-xl font-semibold mb-4 flex items-center">
-            <i data-feather="clock" class="mr-2"></i> Hours
-          </h3>
-          <ul class="space-y-2">
-            <li class="flex justify-between"><span>Mon–Fri</span><span>7 AM–10 PM</span></li>
-            <li class="flex justify-between"><span>Saturday</span><span>8 AM–10 PM</span></li>
-            <li class="flex justify-between"><span>Sunday</span><span>9 AM–9 PM</span></li>
-          </ul>
-        </div>
-
-        <!-- Contact Info -->
-        <div>
-          <h3 class="text-xl font-semibold mb-4 flex items-center">
-            <i data-feather="info" class="mr-2"></i> Contact
-          </h3>
-          <ul class="space-y-3">
-            <li class="flex items-center"><i data-feather="map-pin" class="mr-2"></i> 123 Main St, Lonsdale</li>
-            <li class="flex items-center"><i data-feather="phone" class="mr-2"></i> (555) 123-4567</li>
-            <li class="flex items-center"><i data-feather="mail" class="mr-2"></i> contact@lonsdalesmoke.com</li>
-          </ul>
-        </div>
-
-        <!-- Form -->
-        <div>
-          <h3 class="text-xl font-semibold mb-4 flex items-center">
-            <i data-feather="message-square" class="mr-2"></i> Send a Message
-          </h3>
-          <form class="space-y-3">
-            <input type="text" placeholder="Your Name" class="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary" />
-            <input type="email" placeholder="Your Email" class="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary" />
-            <textarea placeholder="Your Message" rows="3" class="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-            <button type="submit" class="bg-primary hover:bg-red-700 text-white px-6 py-2 rounded-lg font-medium w-full">Send Message</button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Map -->
-      <div class="mt-12 bg-gray-800 rounded-lg overflow-hidden h-64">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5693.363197245544!2d-93.42569785837077!3d44.48069889544048!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87f66768d37a22f1%3A0x53d1a627885a0140!2sLonsdale%20Tobacco%20%26%20Vape!5e0!3m2!1sen!2sus!4v1760558564024!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-8">
-    <div class="max-w-6xl mx-auto px-4 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
-      <div class="mb-4 md:mb-0">
-        <div class="flex items-center space-x-2">
-          <i data-feather="shopping-bag" class="text-primary"></i>
-          <span class="text-xl font-bold">Lonsdale Tobacco & Vape</span>
-        </div>
-        <p class="text-gray-400 mt-2">Your local smoke shop since 2010</p>
-      </div>
-      <div class="flex space-x-6">
-        <a href="#" class="text-gray-400 hover:text-primary" aria-label="Facebook"><i data-feather="facebook"></i></a>
-        <a href="#" class="text-gray-400 hover:text-primary" aria-label="Instagram"><i data-feather="instagram"></i></a>
-        <a href="#" class="text-gray-400 hover:text-primary" aria-label="Twitter"><i data-feather="twitter"></i></a>
-      </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu hidden md:hidden bg-white shadow-lg fixed w-full z-40 mt-20">
+        <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3" aria-label="Mobile">
+            <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50 rounded">Home</a>
+            <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50 rounded">Our Mission</a>
+            <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50 rounded">Contact</a>
+            <a href="#colors" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50 rounded">Gutter Colors</a>
+            <a href="#gallery" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50 rounded">Gallery</a>
+        </nav>
     </div>
 
-    <div class="border-t border-gray-800 mt-6 pt-6 text-center text-gray-400 text-sm">
-      <p>© 202
-      <p>© 2025 Lonsdale Tobacco & Vape. All rights reserved.</p>
+    <!-- Fixed Parallax Background -->
+    <div class="parallax-container" aria-hidden="true">
+        <div class="parallax-row" data-speed="0.3">
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">GUTTER INSTALLATION</span>
+            <span class="separator">•</span>
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">GUTTER INSTALLATION</span>
+            <span class="separator">•</span>
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+        </div>
+        <div class="parallax-row" data-speed="-0.35">
+            <span class="parallax-text">GUTTER CLEANING</span>
+            <span class="separator">•</span>
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">GUTTER MAINTENANCE</span>
+            <span class="separator">•</span>
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">GUTTER CLEANING</span>
+        </div>
+        <div class="parallax-row" data-speed="0.45">
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">EXTERIORS</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">GUTTER REPAIR</span>
+            <span class="separator">•</span>
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">EXTERIORS</span>
+        </div>
+        <div class="parallax-row" data-speed="-0.45">
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">EXTERIORS</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">GUTTER REPAIR</span>
+            <span class="separator">•</span>
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">EXTERIORS</span>
+        </div>
+        <div class="parallax-row" data-speed="-0.3">
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">GUTTER INSTALLATION</span>
+            <span class="separator">•</span>
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+            <span class="separator">•</span>
+            <span class="parallax-text">GUTTER INSTALLATION</span>
+            <span class="separator">•</span>
+            <span class="parallax-text highlight">BRING THE RAIN</span>
+        </div>
     </div>
-  </footer>
 
-  <script>
-    feather.replace();
-  </script>
+    <!-- Hero Section Content -->
+    <section id="home" class="hero-content-wrapper flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-b from-gray-700/60 via-gray-700/40 to-gray-700/60"></div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto fade-in">
+            <div class="backdrop-blur-md bg-gray-900/20 rounded-2xl p-8 md:p-12">
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">Bring The Rain Exteriors</h1>
+                <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-lg">Expert Gutter Installation &amp; Exterior Solutions</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contact" class="bg-white text-blue-700 hover:bg-blue-100 px-8 py-3 rounded-lg font-semibold text-lg transition duration-300 shadow-lg">Get a Free Quote</a>
+                    <a href="#colors" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-700 px-8 py-3 rounded-lg font-semibold text-lg transition duration-300">See Gutter Colors</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content starts here with white background to cover parallax -->
+    <div class="content-start">
+        <!-- Mission, Vision, Goal &amp; Purpose Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 scroll-reveal">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Foundation</h2>
+                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                    <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">Building trust one raindrop at a time</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm card-hover scroll-reveal">
+                        <div class="bg-emerald-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="target" class="h-6 w-6 text-emerald-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Mission</h3>
+                        <p class="text-gray-600">To protect homes with superior gutter systems while delivering craftsmanship that stands the test of time and weather.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm card-hover scroll-reveal">
+                        <div class="bg-purple-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="eye" class="h-6 w-6 text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Vision</h3>
+                        <p class="text-gray-600">To redefine the gutter industry through innovation, integrity, and a commitment to every homeowner's peace of mind.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm card-hover scroll-reveal">
+                        <div class="bg-amber-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="award" class="h-6 w-6 text-amber-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Promise</h3>
+                        <p class="text-gray-600">To treat your home as our own, combining technical expertise with old-fashioned customer care.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm card-hover scroll-reveal">
+                        <div class="bg-rose-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="heart" class="h-6 w-6 text-rose-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Approach</h3>
+                        <p class="text-gray-600">We listen first, then deliver solutions that protect your home while respecting your budget and timeline.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Decorative Parallax Divider with Moving Text -->
+        <div class="section-divider" id="divider" aria-hidden="true">
+            <div class="divider-text-container">
+                <div class="divider-text-row">
+                    <span class="divider-text highlight">QUALITY</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text">EXCELLENCE</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text highlight">PROTECTION</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text">TRUST</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text highlight">EXPERTISE</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text">INNOVATION</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text highlight">QUALITY</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text">EXCELLENCE</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text highlight">PROTECTION</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text">TRUST</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text highlight">EXPERTISE</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text">INNOVATION</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text highlight">QUALITY</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text">EXCELLENCE</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text highlight">PROTECTION</span>
+                    <span class="divider-separator">•</span>
+                    <span class="divider-text">TRUST</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connect With Us Section -->
+        <section id="contact" class="py-20 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 scroll-reveal">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Connect With Us</h2>
+                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                    <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">We're just a call, click, or message away</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-sm text-center card-hover scroll-reveal-left">
+                        <div class="bg-emerald-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="phone" class="h-6 w-6 text-emerald-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Call Us</h3>
+                        <!-- PLACEHOLDER: business hours not confirmed -->
+                        <p class="text-gray-600 mb-4">Monday-Saturday, 8am-6pm</p>
+                        <!-- PLACEHOLDER: (612) 382-1268 is template demo data, not a real number.
+                             Replace both the tel: href and the visible text. -->
+                        <a href="tel:+15551234567" class="text-emerald-700 hover:text-emerald-900 font-medium text-lg">(612) 382-1268</a>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-lg shadow-sm text-center card-hover scroll-reveal-scale">
+                        <div class="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="mail" class="h-6 w-6 text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
+                        <p class="text-gray-600 mb-4">We respond within 24 hours</p>
+                        <!-- PLACEHOLDER: info@bringtherain.com does not match the intended
+                             domain (bringtherainexteriors.com) and has not been confirmed as
+                             a working mailbox. Do not publish until verified. -->
+                        <a href="mailto:info@bringtherain.com" class="text-blue-700 hover:text-blue-900 font-medium text-lg">info@bringtherain.com</a>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-lg shadow-sm text-center card-hover scroll-reveal-right">
+                        <div class="bg-purple-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="facebook" class="h-6 w-6 text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Follow Us</h3>
+                        <p class="text-gray-600 mb-4">See our latest projects</p>
+                        <!-- PLACEHOLDER: unverified Facebook page. -->
+                        <a href="https://facebook.com/bringtherain" rel="noopener" class="text-purple-700 hover:text-purple-900 font-medium text-lg">@BringTheRain</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             Available Gutter Colors
+             Replaces the removed "Meet The Team" section.
+
+             SOURCING NOTE: ABC Supply is a wholesale distributor and does
+             not publish a colour chart of its own — it stocks rainware from
+             manufacturer partners, and its own site says those partners are
+             "not available at all locations."  Ply Gem Performance Metals is
+             one of the listed aluminium rainware partners, so the names and
+             codes below are taken from Ply Gem's published 2025 Metal Color
+             Matrix (trim coil colour offering).  The HEX values are
+             approximate screen renderings only — they are NOT official
+             colour specifications and are labelled as such in the UI.
+             Always confirm against a physical chip.
+             ============================================================ -->
+        <section id="colors" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 scroll-reveal">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Available Gutter Colors</h2>
+                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                    <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">Pick a finish and see it on a gutter run before you commit</p>
+                </div>
+
+                <div class="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
+
+                    <!-- Live preview -->
+                    <div class="lg:col-span-2 lg:sticky lg:top-28 scroll-reveal-left">
+                        <div class="bg-gray-50 rounded-2xl shadow-sm overflow-hidden">
+                            <div class="gutter-preview" id="gutterPreview">
+                                <svg viewBox="0 0 640 320" role="img" aria-labelledby="previewSvgTitle">
+                                    <title id="previewSvgTitle">Illustration of a seamless gutter and downspout in the selected color</title>
+                                    <defs>
+                                        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#dbeafe"/>
+                                            <stop offset="100%" stop-color="#eff6ff"/>
+                                        </linearGradient>
+                                        <linearGradient id="roofGrad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#4b5563"/>
+                                            <stop offset="100%" stop-color="#374151"/>
+                                        </linearGradient>
+                                        <linearGradient id="wallGrad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#f3f4f6"/>
+                                            <stop offset="100%" stop-color="#e5e7eb"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- sky -->
+                                    <rect width="640" height="320" fill="url(#skyGrad)"/>
+
+                                    <!-- roof -->
+                                    <path d="M0 0 H640 V96 H0 Z" fill="url(#roofGrad)"/>
+                                    <g stroke="#1f2937" stroke-opacity="0.35" stroke-width="2">
+                                        <path d="M0 34 H640"/>
+                                        <path d="M0 66 H640"/>
+                                    </g>
+                                    <rect y="96" width="640" height="6" fill="#1f2937" fill-opacity="0.45"/>
+
+                                    <!-- fascia board -->
+                                    <rect y="102" width="640" height="26" fill="#f9fafb"/>
+                                    <rect y="124" width="640" height="4" fill="#000" fill-opacity="0.10"/>
+
+                                    <!-- wall / siding below the gutter -->
+                                    <rect y="204" width="640" height="116" fill="url(#wallGrad)"/>
+                                    <g stroke="#9ca3af" stroke-opacity="0.5" stroke-width="1.5">
+                                        <path d="M0 232 H640"/>
+                                        <path d="M0 262 H640"/>
+                                        <path d="M0 292 H640"/>
+                                    </g>
+                                    <!-- shadow cast by the gutter -->
+                                    <rect y="204" width="640" height="16" fill="#000" fill-opacity="0.12"/>
+
+                                    <!-- gutter run (K-style, front elevation) -->
+                                    <g>
+                                        <rect y="128" width="640" height="76" fill="var(--gutter-color)"/>
+                                        <!-- profile shading: top lip, ogee curve, flat face, bottom return -->
+                                        <rect y="128" width="640" height="9"  fill="#fff" fill-opacity="0.42"/>
+                                        <rect y="137" width="640" height="12" fill="#fff" fill-opacity="0.18"/>
+                                        <rect y="149" width="640" height="8"  fill="#000" fill-opacity="0.05"/>
+                                        <rect y="176" width="640" height="14" fill="#000" fill-opacity="0.12"/>
+                                        <rect y="190" width="640" height="14" fill="#000" fill-opacity="0.28"/>
+                                        <!-- hanger seams -->
+                                        <g stroke="#000" stroke-opacity="0.10" stroke-width="2">
+                                            <path d="M120 128 V204"/>
+                                            <path d="M320 128 V204"/>
+                                            <path d="M520 128 V204"/>
+                                        </g>
+                                    </g>
+
+                                    <!-- downspout -->
+                                    <g>
+                                        <rect x="452" y="196" width="66" height="124" fill="var(--gutter-color)"/>
+                                        <rect x="452" y="196" width="10" height="124" fill="#fff" fill-opacity="0.34"/>
+                                        <rect x="474" y="196" width="8" height="124" fill="#fff" fill-opacity="0.12"/>
+                                        <rect x="498" y="196" width="20" height="124" fill="#000" fill-opacity="0.20"/>
+                                        <rect x="446" y="196" width="78" height="14" fill="var(--gutter-color)"/>
+                                        <rect x="446" y="196" width="78" height="14" fill="#000" fill-opacity="0.10"/>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <div class="p-6 sm:p-8" aria-live="polite">
+                                <p class="text-sm font-semibold uppercase tracking-wide text-blue-700 mb-1">Selected color</p>
+                                <p id="selectedColorName" class="text-2xl font-bold text-gray-900">White</p>
+                                <p id="selectedColorCode" class="text-sm text-gray-600 mt-1">Ply Gem Performance Metals color code 04</p>
+                                <p class="text-xs text-gray-500 mt-3">
+                                    On-screen approximation:
+                                    <span id="selectedColorHex" class="font-semibold text-gray-700">#F2F2EE</span>
+                                    — not an official color specification.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Swatch grid -->
+                    <div class="lg:col-span-3 scroll-reveal-right">
+                        <div id="colorGrid"
+                             role="radiogroup"
+                             aria-label="Available gutter colors"
+                             class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+
+                            <!-- Each card: real Ply Gem Performance Metals colour name + code.
+                                 data-hex is an approximate on-screen rendering only. -->
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="White" data-code="04" data-hex="#F2F2EE">
+                                <span class="swatch" style="background-color:#F2F2EE">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">White</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 04</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Almond" data-code="53" data-hex="#E6DCC6">
+                                <span class="swatch" style="background-color:#E6DCC6">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Almond</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 53</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Wicker" data-code="A7" data-hex="#D9C9A8">
+                                <span class="swatch" style="background-color:#D9C9A8">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Wicker</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code A7</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Sandtone" data-code="39" data-hex="#CBB89A">
+                                <span class="swatch" style="background-color:#CBB89A">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Sandtone</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 39</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Classic Cream" data-code="30" data-hex="#EFE4C4">
+                                <span class="swatch" style="background-color:#EFE4C4">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Classic Cream</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 30</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Linen" data-code="44" data-hex="#E8E3D6">
+                                <span class="swatch" style="background-color:#E8E3D6">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Linen</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 44</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Silver Gray" data-code="02" data-hex="#B9BDBB">
+                                <span class="swatch" style="background-color:#B9BDBB">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Silver Gray</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 02</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Harbor Grey" data-code="35" data-hex="#8A9096">
+                                <span class="swatch" style="background-color:#8A9096">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Harbor Grey</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 35</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Deep Granite" data-code="090" data-hex="#4A4F55">
+                                <span class="swatch" style="background-color:#4A4F55">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Deep Granite</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 090</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Charcoal Grey" data-code="80" data-hex="#3B3F42">
+                                <span class="swatch" style="background-color:#3B3F42">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Charcoal Grey</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 80</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Black" data-code="33" data-hex="#1E2022">
+                                <span class="swatch" style="background-color:#1E2022">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Black</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 33</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Musket Brown" data-code="59" data-hex="#5A4634">
+                                <span class="swatch" style="background-color:#5A4634">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Musket Brown</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 59</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Royal Brown" data-code="62" data-hex="#3E2C21">
+                                <span class="swatch" style="background-color:#3E2C21">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Royal Brown</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 62</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Terra Bronze" data-code="34" data-hex="#6B5442">
+                                <span class="swatch" style="background-color:#6B5442">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Terra Bronze</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 34</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Dark Bronze" data-code="JS" data-hex="#3A322B">
+                                <span class="swatch" style="background-color:#3A322B">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Dark Bronze</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code JS</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Evergreen" data-code="70" data-hex="#2E4034">
+                                <span class="swatch" style="background-color:#2E4034">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Evergreen</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 70</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="English Wedgewood" data-code="390" data-hex="#6E8296">
+                                <span class="swatch" style="background-color:#6E8296">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">English Wedgewood</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 390</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+
+                            <button type="button" role="radio" aria-checked="false" tabindex="-1"
+                                    class="color-card bg-white rounded-xl p-3 text-left border-2 border-gray-200 shadow-sm"
+                                    data-name="Copper Penny" data-code="135" data-hex="#A6714A">
+                                <span class="swatch" style="background-color:#A6714A">
+                                    <span class="swatch-check" aria-hidden="true">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="block mt-3 font-semibold text-gray-900 text-sm leading-tight">Copper Penny</span>
+                                <span class="block mt-1 text-xs text-gray-500">Code 135</span>
+                                <span class="block mt-2 text-xs font-semibold text-blue-700"><span class="hint-select">Select</span><span class="hint-selected">Selected</span></span>
+                            </button>
+                        </div>
+
+                        <div class="mt-8 bg-blue-50 border border-blue-100 rounded-xl p-5 sm:p-6">
+                            <p class="text-sm text-blue-900 leading-relaxed">
+                                <strong>About these colors.</strong>
+                                Names and codes shown are from the Ply Gem Performance Metals trim coil
+                                offering, one of the aluminum rainware lines carried by ABC Supply.
+                                Swatches are on-screen approximations and will not match a physical chip
+                                exactly.
+                            </p>
+                            <p class="text-sm text-blue-900 leading-relaxed mt-3">
+                                Available colors may vary by manufacturer and location. Contact us to
+                                confirm current availability.
+                            </p>
+                            <a href="#contact" class="inline-block mt-5 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300">Request color samples</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <!-- PLACEHOLDER: all six images are Unsplash stock photos, not this
+             client's work. Swap in real project photos before launch. -->
+        <section id="gallery" class="py-20 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 scroll-reveal">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Work</h2>
+                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                    <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">Quality that speaks for itself</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Newly installed seamless gutters on a residential roofline" loading="lazy" decoding="async" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
+                        <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Close-up of a finished gutter and downspout joint" loading="lazy" decoding="async" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Completed exterior project with new guttering" loading="lazy" decoding="async" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
+                        <img src="https://images.unsplash.com/photo-1600566752227-8f61d413a4b9?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Custom gutter run along a steep roof edge" loading="lazy" decoding="async" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Commercial building with a full gutter system installed" loading="lazy" decoding="async" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Residential home after a gutter replacement" loading="lazy" decoding="async" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 p-2 rounded-lg">
+                                <i data-feather="cloud-rain" class="h-6 w-6 text-white"></i>
+                            </span>
+                            <span class="ml-3 text-xl font-bold">Bring The Rain Exteriors</span>
+                        </div>
+                        <!-- PLACEHOLDER: "since 2010" is unverified. -->
+                        <p class="text-gray-300">Protecting homes with premium gutter solutions since 2010.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-300 hover:text-white transition duration-300">Home</a></li>
+                            <li><a href="#about" class="text-gray-300 hover:text-white transition duration-300">Our Mission</a></li>
+                            <li><a href="#contact" class="text-gray-300 hover:text-white transition duration-300">Contact</a></li>
+                            <li><a href="#colors" class="text-gray-300 hover:text-white transition duration-300">Gutter Colors</a></li>
+                            <li><a href="#gallery" class="text-gray-300 hover:text-white transition duration-300">Gallery</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Services</h3>
+                        <!-- These pointed at href="#" (dead links). Until there are real
+                             service pages, they route to the contact section. -->
+                        <ul class="space-y-2">
+                            <li><a href="#contact" class="text-gray-300 hover:text-white transition duration-300">Gutter Installation</a></li>
+                            <li><a href="#contact" class="text-gray-300 hover:text-white transition duration-300">Gutter Repair</a></li>
+                            <li><a href="#contact" class="text-gray-300 hover:text-white transition duration-300">Gutter Cleaning</a></li>
+                            <li><a href="#contact" class="text-gray-300 hover:text-white transition duration-300">Exterior Construction</a></li>
+                            <li><a href="#contact" class="text-gray-300 hover:text-white transition duration-300">Free Estimates</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <i data-feather="map-pin" class="h-5 w-5 text-blue-400 mr-2"></i>
+                                <!-- PLACEHOLDER: 123 Rain Street, Watertown is demo data. -->
+                                <span class="text-gray-300">Based in New Prague, MN</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="phone" class="h-5 w-5 text-blue-400 mr-2"></i>
+                                <!-- PLACEHOLDER: (612) 382-1268 is demo data. -->
+                                <span class="text-gray-300">(612) 382-1268</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="mail" class="h-5 w-5 text-blue-400 mr-2"></i>
+                                <!-- PLACEHOLDER: unverified address on the wrong domain. -->
+                                <span class="text-gray-300">info@bringtherain.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-300 mb-4 md:mb-0">© <span id="copyrightYear">2026</span> Bring The Rain Exteriors. All rights reserved.</p>
+                    <!-- PLACEHOLDER: social profile URLs unknown. Either supply the real
+                         links or delete this block — dead "#" links hurt usability. -->
+                    <div class="flex space-x-6">
+                        <a href="#" aria-label="Facebook (link not yet configured)" class="text-gray-300 hover:text-white transition duration-300">
+                            <i data-feather="facebook" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram (link not yet configured)" class="text-gray-300 hover:text-white transition duration-300">
+                            <i data-feather="instagram" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" aria-label="X / Twitter (link not yet configured)" class="text-gray-300 hover:text-white transition duration-300">
+                            <i data-feather="twitter" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            // ---------- Icons ----------
+            // feather.min.js is deferred, so wait for DOM ready and guard against
+            // the CDN being unreachable (the original called feather.replace()
+            // unconditionally, which threw and killed every script below it).
+            function drawIcons() {
+                if (typeof feather !== 'undefined' && feather.replace) {
+                    feather.replace();
+                }
+            }
+
+            // ---------- Copyright year ----------
+            var yearEl = document.getElementById('copyrightYear');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
+            }
+
+            // ---------- Mobile menu ----------
+            var menuButton = document.querySelector('.mobile-menu-button');
+            var mobileMenu = document.querySelector('.mobile-menu');
+
+            function setMenu(open) {
+                if (!mobileMenu || !menuButton) return;
+                mobileMenu.classList.toggle('hidden', !open);
+                menuButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+                menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+            }
+
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', function () {
+                    setMenu(mobileMenu.classList.contains('hidden'));
+                });
+
+                mobileMenu.querySelectorAll('a').forEach(function (link) {
+                    link.addEventListener('click', function () { setMenu(false); });
+                });
+
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                        setMenu(false);
+                        menuButton.focus();
+                    }
+                });
+            }
+
+            // ---------- Gutter colour selector ----------
+            var grid = document.getElementById('colorGrid');
+            var preview = document.getElementById('gutterPreview');
+            var nameEl = document.getElementById('selectedColorName');
+            var codeEl = document.getElementById('selectedColorCode');
+            var hexEl = document.getElementById('selectedColorHex');
+
+            if (grid && preview && nameEl && codeEl && hexEl) {
+                var cards = Array.prototype.slice.call(grid.querySelectorAll('.color-card'));
+
+                function selectColor(card, moveFocus) {
+                    cards.forEach(function (c) {
+                        var on = (c === card);
+                        c.classList.toggle('is-selected', on);
+                        c.setAttribute('aria-checked', on ? 'true' : 'false');
+                        c.tabIndex = on ? 0 : -1;
+                    });
+
+                    preview.style.setProperty('--gutter-color', card.dataset.hex);
+                    nameEl.textContent = card.dataset.name;
+                    codeEl.textContent = 'Ply Gem Performance Metals color code ' + card.dataset.code;
+                    hexEl.textContent = card.dataset.hex.toUpperCase();
+
+                    if (moveFocus) card.focus();
+                }
+
+                cards.forEach(function (card, i) {
+                    card.addEventListener('click', function () { selectColor(card, false); });
+
+                    // Arrow-key navigation, per the WAI-ARIA radio group pattern.
+                    card.addEventListener('keydown', function (e) {
+                        var next = null;
+                        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                            next = cards[(i + 1) % cards.length];
+                        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                            next = cards[(i - 1 + cards.length) % cards.length];
+                        } else if (e.key === 'Home') {
+                            next = cards[0];
+                        } else if (e.key === 'End') {
+                            next = cards[cards.length - 1];
+                        }
+                        if (next) {
+                            e.preventDefault();
+                            selectColor(next, true);
+                        }
+                    });
+                });
+
+                if (cards.length) selectColor(cards[0], false);
+            }
+
+            // ---------- Hero parallax ----------
+            var ticking = false;
+            var parallaxContainer = document.querySelector('.parallax-container');
+            var parallaxRows = document.querySelectorAll('.parallax-row');
+
+            function updateParallax() {
+                if (!parallaxContainer) return;
+
+                var scrolled = window.pageYOffset;
+                var heroHeight = window.innerHeight;
+
+                if (scrolled > heroHeight) {
+                    parallaxContainer.style.opacity = '0';
+                    parallaxContainer.style.visibility = 'hidden';
+                    return;
+                }
+
+                parallaxContainer.style.opacity = '1';
+                parallaxContainer.style.visibility = 'visible';
+
+                parallaxRows.forEach(function (row) {
+                    var speed = parseFloat(row.getAttribute('data-speed'));
+                    if (isNaN(speed)) return;
+
+                    var offset = scrolled * speed;
+                    row.querySelectorAll('.parallax-text, .separator').forEach(function (textEl) {
+                        textEl.style.transform = 'translateX(' + offset + 'px)';
+                    });
+                });
+            }
+
+            // ---------- Scroll reveal ----------
+            var reveals = document.querySelectorAll(
+                '.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale'
+            );
+
+            function revealOnScroll() {
+                reveals.forEach(function (element) {
+                    if (element.classList.contains('active')) return;
+                    if (element.getBoundingClientRect().top < window.innerHeight - 150) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+
+            function onFrame() {
+                updateParallax();
+                revealOnScroll();
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function () {
+                if (!ticking) {
+                    window.requestAnimationFrame(onFrame);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            window.addEventListener('resize', function () {
+                if (!ticking) {
+                    window.requestAnimationFrame(onFrame);
+                    ticking = true;
+                }
+            });
+
+            // ---------- Init ----------
+            function init() {
+                drawIcons();
+                updateParallax();
+                revealOnScroll();
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+            // Deferred scripts can land after DOMContentLoaded in some browsers;
+            // one more pass on window load makes sure icons render.
+            window.addEventListener('load', drawIcons);
+        })();
+    </script>
 </body>
 </html>
