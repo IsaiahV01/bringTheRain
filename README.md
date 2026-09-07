@@ -1,3 +1,3 @@
-Live Preview Link
+Live Link
 
-https://isaiahv01.github.io/bringTheRain/
+bringtherainexteriors.com
